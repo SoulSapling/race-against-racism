@@ -7,6 +7,10 @@ using System.Linq;
 public class GameManager : MonoBehaviour {
 
 // Variable Assignment
+	[SerializeField]
+	public GameObject playerGameObject;
+	private CharacterBehaviour answerReference;
+
     public Question[] questions;
     private static List<Question> unansweredQuestions;
 
@@ -31,12 +35,9 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private float timeBetweenQuestions = 1f;
-
+/*
     [SerializeField]
     private GameObject playerObject;
-
-    [SerializeField]
-    private Image player;
 
     [SerializeField]
     private float runTime;
@@ -68,28 +69,30 @@ public class GameManager : MonoBehaviour {
     private float celebrateCounter;
 
     public Animator animator;
-
+*/
     // At the Start of the level
     void Start()
     {
+		answerReference = playerGameObject.GetComponent<CharacterBehaviour>();
         if (unansweredQuestions == null || unansweredQuestions.Count == 0)
         {
             unansweredQuestions = questions.ToList<Question>();
         }
 
         SetCurrentQuestion();
-
+/*
         runCounter = runTime;
         jumpCounter = jumpTime;
         landCounter = 0;
         fallCounter = 0;
         celebrateCounter = 0;
+*/
     }
 
 // Running each Frame
     private void Update()
     {
-
+/*
 
         if (landCounter > 0)
         {
@@ -120,7 +123,7 @@ public class GameManager : MonoBehaviour {
             jumpCounter -= Time.deltaTime;
             animator.SetFloat("Jump", jumpCounter);
         }
-
+*/
     }
 
 // Question Functions
@@ -135,7 +138,7 @@ public class GameManager : MonoBehaviour {
         ansCText.text = currentQuestion.ansC;
         ansDText.text = currentQuestion.ansD;
 
-        player.sprite = charSets[0].neutralPose;
+//        player.sprite = charSets[0].neutralPose;
 
         Debug.Log(unansweredQuestions.Count);
     }
@@ -150,7 +153,7 @@ public class GameManager : MonoBehaviour {
     }
 
 // Animation Functions
-
+/*
     public void RunAnim()
     {
 
@@ -178,82 +181,26 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-
+*/
     // Answer Functions
+	// References to CharacterBehaviour script to preform relevant action based on answer
     public void UserSelectA()
     {
-        if (currentQuestion.ansAIsTrue)
-        {
-            Debug.Log("CORRECT!");
-            celebrateCounter = celebrateTime;
-        }
-        else
-        {
-            Debug.Log("WRONG!");
-            fallCounter = fallTime;
-
-        }
-
-        landCounter = landTime;
-        runCounter = runTime;
-        jumpCounter = jumpTime;
-        StartCoroutine(TransitionToNexQuestion());
+		answerReference.AnswerIs(currentQuestion.ansAIsTrue);
     }
 
     public void UserSelectB()
     {
-        if (currentQuestion.ansBIsTrue)
-        {
-            Debug.Log("CORRECT!");
-            celebrateCounter = celebrateTime;
-        }
-        else
-        {
-            Debug.Log("WRONG!");
-            fallCounter = fallTime;
-        }
-
-        landCounter = landTime;
-        runCounter = runTime;
-        jumpCounter = jumpTime;
-        StartCoroutine(TransitionToNexQuestion());
+		answerReference.AnswerIs(currentQuestion.ansBIsTrue);
     }
 
     public void UserSelectC()
     {
-        if (currentQuestion.ansCIsTrue)
-        {
-            Debug.Log("CORRECT!");
-            celebrateCounter = celebrateTime;
-        }
-        else
-        {
-            Debug.Log("WRONG!");
-            fallCounter = fallTime;
-        }
-
-        landCounter = landTime;
-        runCounter = runTime;
-        jumpCounter = jumpTime;
-        StartCoroutine(TransitionToNexQuestion());
+		answerReference.AnswerIs(currentQuestion.ansCIsTrue);
     }
 
     public void UserSelectD()
     {
-        if (currentQuestion.ansDIsTrue)
-        {
-            Debug.Log("CORRECT!");
-            celebrateCounter = celebrateTime;
-        }
-        else
-        {
-            Debug.Log("WRONG!");
-            fallCounter = fallTime;
-        }
-
-        landCounter = landTime;
-        runCounter = runTime;
-        jumpCounter = jumpTime;
-        StartCoroutine(TransitionToNexQuestion());
+		answerReference.AnswerIs(currentQuestion.ansDIsTrue);
     }
 }

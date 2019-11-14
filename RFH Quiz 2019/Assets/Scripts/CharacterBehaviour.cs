@@ -1,38 +1,73 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterBehaviour : MonoBehaviour {
+	public Transform MovingWorld;
 	
-	private bool isRunning = false;
-	public bool hasStarted = true;
-	public float speed = 10;
+	private bool raceStarted = false;
+	public float runSpeed = 1;
+	public float jumpDistance = 1;
+	public float startTime = 3;
+	private float countdownTimer;
+	private bool countStarted = false;
+	private bool questionTime = false;
+	
 	private Animator animator;
 	
 	private void Start()
 	{
-		animator = gameObject.GetComponent<Animator>();
+		animator = gameObject.GetComponentInChildren<Animator>();
+		StartCountdown(startTime);
 	}
 	
 	private void Update()
 	{
-		if(hasStarted == true)
+		if(countdownTimer > 0 && countStarted == true)
 		{
-			animator.SetBool("isRunning", isRunning);
-			if(isRunning == true)
-			{
-				transform.Translate(Vector2.right * speed * Time.deltaTime);
-			}
+			countdownTimer -= Time.deltaTime;
+			print(countdownTimer);
 		}
+		if(countdownTimer <= 0)
+		{
+			raceStarted = true;
+			countStarted = false;
+		}
+		//moving controller
+		if(raceStarted == true && questionTime == false)
+		{
+			animator.SetTrigger("startRunning");
+			MovingWorld.Translate(Vector2.left * runSpeed * Time.deltaTime);
+		}
+	}
+	//jump when getting to collider
+	private void StartCountdown(float countdown)
+	{
+		countdownTimer = countdown;
+		countStarted = true;
 	}
 	
 	private void OnTriggerEnter2D(Collider2D col)
 	{
+		
 		if(col.tag == "Hurdle")
 		{
-			isRunning = false;
-			animator.SetBool("jump", true);
+			animator.SetTrigger("jumpUp");
 		}
-		print("get ready to jump");
+	}
+	private void OnTriggerExit2D(Collider2D col)
+	{
+		if(col.tag == "Hurdle")
+		{
+			questionTime = true;
+		}
+	}
+	
+	public void AnswerIs(bool isCorrect)
+	{
+		animator.SetBool("answer", isCorrect);
+		animator.SetTrigger("fallDown");
+		questionTime = false;
 	}
 }
