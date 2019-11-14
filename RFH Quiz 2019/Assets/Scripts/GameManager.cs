@@ -5,7 +5,6 @@ using UnityEngine;
 using System.Linq;
 
 public class GameManager : MonoBehaviour {
-
 // Variable Assignment
 	[SerializeField]
 	public GameObject playerGameObject;
@@ -23,54 +22,16 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private Text ansAText;
-
     [SerializeField]
     private Text ansBText;
-
     [SerializeField]
     private Text ansCText;
-
     [SerializeField]
     private Text ansDText;
 
     [SerializeField]
     private float timeBetweenQuestions = 1f;
-/*
-    [SerializeField]
-    private GameObject playerObject;
 
-    [SerializeField]
-    private float runTime;
-    private float runCounter;
-    
-    [SerializeField]
-    private float runSpeed;
-
-    [SerializeField]
-    private float jumpTime;
-    private float jumpCounter;
-
-    [SerializeField]
-    private float jumpSpeed;
-
-    [SerializeField]
-    private float landTime;
-    private float landCounter;
-
-    [SerializeField]
-    private float landSpeed;
-
-    [SerializeField]
-    private float fallTime;
-    private float fallCounter;
-
-    [SerializeField]
-    private float celebrateTime;
-    private float celebrateCounter;
-
-    public Animator animator;
-*/
-    // At the Start of the level
     void Start()
     {
 		answerReference = playerGameObject.GetComponent<CharacterBehaviour>();
@@ -78,52 +39,7 @@ public class GameManager : MonoBehaviour {
         {
             unansweredQuestions = questions.ToList<Question>();
         }
-
         SetCurrentQuestion();
-/*
-        runCounter = runTime;
-        jumpCounter = jumpTime;
-        landCounter = 0;
-        fallCounter = 0;
-        celebrateCounter = 0;
-*/
-    }
-
-// Running each Frame
-    private void Update()
-    {
-/*
-
-        if (landCounter > 0)
-        {
-            playerObject.transform.Translate(0.5f * landSpeed * Time.deltaTime, -landSpeed * Time.deltaTime, 0);
-            landCounter -= Time.deltaTime;
-        }
-        else if (fallCounter > 0)
-        {
-            playerObject.transform.Translate(0, 0, 0);
-            fallCounter -= Time.deltaTime;
-            animator.SetFloat("Fall", fallCounter);
-        }
-        else if (celebrateCounter > 0)
-        {
-            playerObject.transform.Translate(0, 0, 0);
-            celebrateCounter -= Time.deltaTime;
-            animator.SetFloat("Celebrate", celebrateCounter);
-        }
-        else if (runCounter > 0)
-        {
-            playerObject.transform.Translate(runSpeed * Time.deltaTime, 0, 0);
-            runCounter -= Time.deltaTime;
-            animator.SetFloat("Run", runCounter);
-        }
-        else if (jumpCounter > 0)
-        {
-            playerObject.transform.Translate(0.5f * jumpSpeed * Time.deltaTime, jumpSpeed * Time.deltaTime, 0);
-            jumpCounter -= Time.deltaTime;
-            animator.SetFloat("Jump", jumpCounter);
-        }
-*/
     }
 
 // Question Functions
@@ -137,70 +53,40 @@ public class GameManager : MonoBehaviour {
         ansBText.text = currentQuestion.ansB;
         ansCText.text = currentQuestion.ansC;
         ansDText.text = currentQuestion.ansD;
-
-//        player.sprite = charSets[0].neutralPose;
-
         Debug.Log(unansweredQuestions.Count);
     }
     
     IEnumerator TransitionToNexQuestion()
     {
-        unansweredQuestions.Remove(currentQuestion);
-
         yield return new WaitForSeconds(timeBetweenQuestions);
-
+        
+		unansweredQuestions.Remove(currentQuestion);
         SetCurrentQuestion();
     }
 
-// Animation Functions
-/*
-    public void RunAnim()
-    {
-
-        if (runCounter > 0)
-        {
-            playerObject.transform.Translate(runSpeed * Time.deltaTime, 0, 0);
-        }
-        else
-        {
-            playerObject.transform.Translate(0, 0, 0);
-            jumpCounter = jumpTime;
-        }
-    }
-
-    public void JumpAnim()
-    {
-        jumpCounter -= Time.deltaTime;
-        if (jumpCounter > 0)
-        {
-            playerObject.transform.Translate(0.5f * jumpSpeed * Time.deltaTime, jumpSpeed * Time.deltaTime, 0);
-        }
-        else
-        {
-            playerObject.transform.Translate(0, 0, 0);
-        }
-    }
-
-*/
     // Answer Functions
 	// References to CharacterBehaviour script to preform relevant action based on answer
     public void UserSelectA()
     {
 		answerReference.AnswerIs(currentQuestion.ansAIsTrue);
+		StartCoroutine(TransitionToNexQuestion());
     }
 
     public void UserSelectB()
     {
 		answerReference.AnswerIs(currentQuestion.ansBIsTrue);
+		StartCoroutine(TransitionToNexQuestion());
     }
 
     public void UserSelectC()
     {
 		answerReference.AnswerIs(currentQuestion.ansCIsTrue);
+		StartCoroutine(TransitionToNexQuestion());
     }
 
     public void UserSelectD()
     {
 		answerReference.AnswerIs(currentQuestion.ansDIsTrue);
+		StartCoroutine(TransitionToNexQuestion());
     }
 }

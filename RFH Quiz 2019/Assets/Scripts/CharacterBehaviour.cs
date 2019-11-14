@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterBehaviour : MonoBehaviour {
+	public GameObject[] characters;
+	public int chosenCharacter;
 	public Transform MovingWorld;
 	
 	private bool raceStarted = false;
@@ -13,11 +15,16 @@ public class CharacterBehaviour : MonoBehaviour {
 	private float countdownTimer;
 	private bool countStarted = false;
 	private bool questionTime = false;
-	
 	private Animator animator;
 	
 	private void Start()
 	{
+		
+		foreach(GameObject character in characters)
+		{
+			character.SetActive(false);
+		}
+		characters[chosenCharacter].SetActive(true);
 		animator = gameObject.GetComponentInChildren<Animator>();
 		StartCountdown(startTime);
 	}
