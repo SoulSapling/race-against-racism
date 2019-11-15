@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
     private Text ansDText;
 
     [SerializeField]
-    private float timeBetweenQuestions = 1.5f;
+    private float timeBetweenQuestions = 6f;
 
     void Start()
     {
@@ -45,10 +45,8 @@ public class GameManager : MonoBehaviour {
         {
             unansweredQuestions = questions.ToList<Question>();
         }
-		
-        SetCurrentQuestion();
+		SetCurrentQuestion();
     }
-
 // Question Functions
     void SetCurrentQuestion()
     {
@@ -61,29 +59,24 @@ public class GameManager : MonoBehaviour {
         ansCText.text = currentQuestion.ansC;
         ansDText.text = currentQuestion.ansD;
         Debug.Log(unansweredQuestions.Count);
+		SetButtonInteractable(true);
     }
     
     IEnumerator TransitionToNexQuestion()
     {
-		foreach(Button butt in buttons)
-		{
-			butt.interactable = false;
-		}
-		
+		SetButtonInteractable(false);
         yield return new WaitForSeconds(timeBetweenQuestions);
-
-		if(answered == true)
-		{	
-			unansweredQuestions.Remove(currentQuestion);
-			answered = false;
-        }
+		unansweredQuestions.Remove(currentQuestion);
 		SetCurrentQuestion();
-		
+    }
+	
+	private void SetButtonInteractable(bool isInteractable)
+	{	
 		foreach(Button butt in buttons)
 		{
-			butt.interactable = true;
+			butt.interactable = isInteractable;
 		}
-    }
+	}
 	
     // Answer Functions
 	// References to CharacterBehaviour script to preform relevant action based on answer

@@ -45,7 +45,6 @@ public class CharacterBehaviour : MonoBehaviour {
 		if(countdownTimer > 0 && countStarted == true)
 		{
 			countdownTimer -= Time.deltaTime;
-			print(countdownTimer);
 		}
 		if(countdownTimer <= 0)
 		{
@@ -87,9 +86,9 @@ public class CharacterBehaviour : MonoBehaviour {
 		if(col.tag == "FinishLine")
 		{
 			crossFinishLine = true;
+			score.text = correctAnswers.ToString();
 		}
 	}
-	
 	public void AnswerIs(bool isCorrect)
 	{
 		questionsAnswered++;
@@ -104,5 +103,5 @@ public class CharacterBehaviour : MonoBehaviour {
 		print(questionsAnswered);
 		print(correctAnswers);
 	}
-	
+
 }
