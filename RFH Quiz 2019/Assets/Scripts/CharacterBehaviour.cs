@@ -5,20 +5,31 @@ using UnityEngine.UI;
 
 public class CharacterBehaviour : MonoBehaviour {
 	public GameObject[] characters;
-	public int chosenCharacter;
+	private int chosenCharacter;
 	public Transform MovingWorld;
+	public GameObject WinUI;
+	[SerializeField]
+	public Text score;
 	
 	private bool raceStarted = false;
-	public float runSpeed = 1;
-	public float jumpDistance = 1;
 	public float startTime = 3;
 	private float countdownTimer;
 	private bool countStarted = false;
+	private bool crossFinishLine = false;
+	
+	private int questionsAmount= 8;
+	private int questionsAnswered = 0;
+	private int correctAnswers = 0;
 	private bool questionTime = false;
+	
+	private int moveSpeed = 8;
 	private Animator animator;
 	
 	private void Start()
 	{
+		WinUI.SetActive(false);
+		chosenCharacter = CharacterID.Id;
+		print(chosenCharacter);
 		
 		foreach(GameObject character in characters)
 		{
@@ -42,10 +53,14 @@ public class CharacterBehaviour : MonoBehaviour {
 			countStarted = false;
 		}
 		//moving controller
-		if(raceStarted == true && questionTime == false)
+		if(raceStarted == true && questionTime == false && crossFinishLine == false)
 		{
 			animator.SetTrigger("startRunning");
-			MovingWorld.Translate(Vector2.left * runSpeed * Time.deltaTime);
+			MovingWorld.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+		}
+		if(crossFinishLine == true)
+		{
+			WinUI.SetActive(true);
 		}
 	}
 	//jump when getting to collider
@@ -69,12 +84,25 @@ public class CharacterBehaviour : MonoBehaviour {
 		{
 			questionTime = true;
 		}
+		if(col.tag == "FinishLine")
+		{
+			crossFinishLine = true;
+		}
 	}
 	
 	public void AnswerIs(bool isCorrect)
 	{
+		questionsAnswered++;
+		score.text = questionsAnswered.ToString();
+		if(isCorrect)
+		{
+			correctAnswers++;
+		}
 		animator.SetBool("answer", isCorrect);
 		animator.SetTrigger("fallDown");
 		questionTime = false;
+		print(questionsAnswered);
+		print(correctAnswers);
 	}
+	
 }

@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DavidTest_MainLevel_v02.unity
+    path: Assets/Scenes/Home_v02.unity
+    guid: f829ac37992bc3e42ad14f760bbac52d
+  - enabled: 1
+    path: Assets/Scenes/MainLevel_v03.unity
+    guid: ee0be801f153e7d47977219382a2f252
+  - enabled: 1
+    path: Assets/Scenes/DavidTest_MainLevel.unity
     guid: f49f91ba04eacae4a93224f14cdfe4d4
   m_configObjects: {}

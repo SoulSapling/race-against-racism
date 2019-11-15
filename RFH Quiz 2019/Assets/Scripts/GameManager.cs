@@ -8,18 +8,23 @@ public class GameManager : MonoBehaviour {
 // Variable Assignment
 	[SerializeField]
 	public GameObject playerGameObject;
+	public GameObject questionTextGO;
+	private Button[] buttons;
+	
 	private CharacterBehaviour answerReference;
 
     public Question[] questions;
     private static List<Question> unansweredQuestions;
-
+	private bool answered = false;
+	
     public CharacterSprites[] charSets;
 
     private Question currentQuestion;
 
     [SerializeField]
     private Text questionText;
-
+	
+	private bool isAnswerable;
     [SerializeField]
     private Text ansAText;
     [SerializeField]
@@ -30,15 +35,17 @@ public class GameManager : MonoBehaviour {
     private Text ansDText;
 
     [SerializeField]
-    private float timeBetweenQuestions = 1f;
+    private float timeBetweenQuestions = 1.5f;
 
     void Start()
     {
+		buttons = questionTextGO.GetComponentsInChildren<Button>();
 		answerReference = playerGameObject.GetComponent<CharacterBehaviour>();
         if (unansweredQuestions == null || unansweredQuestions.Count == 0)
         {
             unansweredQuestions = questions.ToList<Question>();
         }
+		
         SetCurrentQuestion();
     }
 
@@ -58,15 +65,30 @@ public class GameManager : MonoBehaviour {
     
     IEnumerator TransitionToNexQuestion()
     {
+		foreach(Button butt in buttons)
+		{
+			butt.interactable = false;
+		}
+		
         yield return new WaitForSeconds(timeBetweenQuestions);
-        
-		unansweredQuestions.Remove(currentQuestion);
-        SetCurrentQuestion();
-    }
 
+		if(answered == true)
+		{	
+			unansweredQuestions.Remove(currentQuestion);
+			answered = false;
+        }
+		SetCurrentQuestion();
+		
+		foreach(Button butt in buttons)
+		{
+			butt.interactable = true;
+		}
+    }
+	
     // Answer Functions
 	// References to CharacterBehaviour script to preform relevant action based on answer
-    public void UserSelectA()
+
+	public void UserSelectA()
     {
 		answerReference.AnswerIs(currentQuestion.ansAIsTrue);
 		StartCoroutine(TransitionToNexQuestion());
@@ -82,7 +104,7 @@ public class GameManager : MonoBehaviour {
     {
 		answerReference.AnswerIs(currentQuestion.ansCIsTrue);
 		StartCoroutine(TransitionToNexQuestion());
-    }
+	}
 
     public void UserSelectD()
     {

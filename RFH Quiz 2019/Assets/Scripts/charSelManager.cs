@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class charSelManager : MonoBehaviour {
 
-    public int charID = 0;
-
+    private int charID = 0;
+	
     [SerializeField]
     private Toggle christian;
 
@@ -69,7 +70,11 @@ public class charSelManager : MonoBehaviour {
 
         button.SetActive(true);
     }
-
-
-
+	
+	public void StartGameScene()
+	{
+		CharacterID.Id = charID;
+		print(charID);
+		SceneManager.LoadScene("DavidTest_MainLevel");
+	}
 }
