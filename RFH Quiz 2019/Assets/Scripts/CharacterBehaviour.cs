@@ -43,7 +43,9 @@ public class CharacterBehaviour : MonoBehaviour {
 			character.SetActive(false);
 		}
 		characters[chosenCharacter].SetActive(true);
+        Debug.Log(chosenCharacter);
 		charAnimator = gameObject.GetComponentInChildren<Animator>();
+        Debug.Log(charAnimator);
 		StartCountdown(startTime);
 	}
 	
