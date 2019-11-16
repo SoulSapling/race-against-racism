@@ -3401,32 +3401,38 @@ MonoBehaviour:
     ansCIsTrue: 0
     ansD: Write to her directly explaining that Muslim women are not oppressed
     ansDIsTrue: 1
-  - question: Placeholder Question Text1
-    ansA: Correct
-    ansAIsTrue: 1
-    ansB: wrong
-    ansBIsTrue: 0
-    ansC: wrong
+  - question: "A boy at school is making fun of another student because his food is
+      \u201Cdifferent\u201D from his food. Most students are also laughing. What do
+      you do?"
+    ansA: "Laugh along, it\u2019s just a joke"
+    ansAIsTrue: 0
+    ansB: Tell the boy to stop and explain that his actions are racist
+    ansBIsTrue: 1
+    ansC: "Ask the boy to stop eating \u201Cweird\u2019 food that smells funny"
     ansCIsTrue: 0
-    ansD: wrong
+    ansD: Take a photo on your phone and share with your friends
     ansDIsTrue: 0
-  - question: Placeholder Question Text2
-    ansA: Correct
+  - question: 'You overhear a work colleague telling a joke to his mate, making fun
+      of Aborigines. Do you:'
+    ansA: Tell him that its not really appropriate to tell such jokes at work
     ansAIsTrue: 1
-    ansB: wrong
+    ansB: Re-tell the joke to your mates
     ansBIsTrue: 0
-    ansC: wrong
+    ansC: Ignore them as it will only create tension between you and them
     ansCIsTrue: 0
-    ansD: wrong
+    ansD: Report it to police
     ansDIsTrue: 0
-  - question: Placeholder Question Text3
-    ansA: Correct
-    ansAIsTrue: 1
-    ansB: wrong
-    ansBIsTrue: 0
-    ansC: wrong
+  - question: A friend arrives late to a meeting and starts complaining about the
+      crowds on the trains and that he couldn't get a seat, he says that Asians are
+      taking over this country.  How do you respond?
+    ansA: You agree with him as you had a similar experience
+    ansAIsTrue: 0
+    ansB: "You fact check and tell him that Asians make up only 15% of the country\u2019s
+      population"
+    ansBIsTrue: 1
+    ansC: You make a light-hearted joke about Asians to break the tension
     ansCIsTrue: 0
-    ansD: wrong
+    ansD: You report him to your supervisor
     ansDIsTrue: 0
   charSets:
   - characterName: Muslim
