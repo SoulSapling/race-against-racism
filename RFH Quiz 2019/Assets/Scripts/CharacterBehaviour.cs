@@ -7,13 +7,15 @@ public class CharacterBehaviour : MonoBehaviour {
 	public GameObject[] characters;
 	private int chosenCharacter;
 	public Transform MovingWorld;
-
+	
 	public GameObject QuestionUI;
 	private Animator questioncharAnimator;
 
 	public GameObject WinUI;
 	[SerializeField]
 	public Text score;
+	public Text finishTxt;
+	public string[] finishTexts;
 	
 	private bool raceStarted = false;
 	public float startTime = 3;
@@ -93,6 +95,10 @@ public class CharacterBehaviour : MonoBehaviour {
 		if(col.tag == "FinishLine")
 		{
 			WinUI.GetComponent<Animator>().SetTrigger("WinIn");
+			if(correctAnswers == 8)
+				finishTxt.text = finishTexts[0];
+			if(correctAnswers == 7)
+				finishTxt.text = finishTexts[1];
 			score.text = correctAnswers.ToString();
 			crossFinishLine = true;
 		}
