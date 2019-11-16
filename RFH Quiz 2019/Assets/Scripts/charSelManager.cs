@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class charSelManager : MonoBehaviour {
 
-    private int charID = 0;
+    private int charID;
 	
     [SerializeField]
     private Toggle christian;
@@ -29,7 +29,10 @@ public class charSelManager : MonoBehaviour {
     [SerializeField]
     private GameObject button;
 
-
+	void Awake()
+	{
+		charID = 0;
+	}
     void Start()
     {
             button.SetActive(false);

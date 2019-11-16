@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 // Variable Assignment
@@ -122,4 +123,8 @@ public class GameManager : MonoBehaviour {
 		answerReference.AnswerIs(currentQuestion.ansDIsTrue);
 		StartCoroutine(TransitionToNexQuestion());
     }
+	public void PlayAgain()
+	{
+		SceneManager.LoadScene("Home");
+	}
 }
