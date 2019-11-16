@@ -72,7 +72,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: landFail_pxy
-  m_Speed: 1
+  m_Speed: 4
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 944357855448716436}
@@ -85,7 +85,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 3806673e0a1d8764cb65bf1eea5addf3, type: 2}
+  m_Motion: {fileID: 7400000, guid: 93aebe1fc834cf849bef9495ab6d1e2f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -97,7 +97,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MuslimcharacterAnimator
+  m_Name: SikhcharacterAnimator
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: startRunning
@@ -221,7 +221,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7c4221a66c7ec794abf9a80c48d37646, type: 2}
+  m_Motion: {fileID: 7400000, guid: 93aebe1fc834cf849bef9495ab6d1e2f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -299,7 +299,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: cabdd35d8bfe4dc4f9f0823a3f484ab9, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6c85308091d0eb3418fc6d43c7e7915c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -363,7 +363,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: idle_pxy
-  m_Speed: 1
+  m_Speed: 4
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -3393641951555723638}
@@ -376,7 +376,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 939dee1ad5b01c54a98efb16f9941fd8, type: 2}
+  m_Motion: {fileID: 7400000, guid: 93aebe1fc834cf849bef9495ab6d1e2f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -390,7 +390,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: landSuccess_pxy
-  m_Speed: 1
+  m_Speed: 4
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 5314172607211639316}
@@ -403,7 +403,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ceea01f55573ec64184562c143585486, type: 2}
+  m_Motion: {fileID: 7400000, guid: 93aebe1fc834cf849bef9495ab6d1e2f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -430,7 +430,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: be27e39f96ec66c44bf0919cf455394f, type: 2}
+  m_Motion: {fileID: 7400000, guid: 5d331635545cea64d9c882b3dc4ab40a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
