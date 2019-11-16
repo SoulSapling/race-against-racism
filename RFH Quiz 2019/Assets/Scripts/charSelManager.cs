@@ -47,27 +47,27 @@ public class charSelManager : MonoBehaviour {
     {
         if (christian.isOn == true)
         {
-            charID = 1;
+            charID = 0;
         }
         else if (hindu.isOn == true)
         {
-            charID = 2;
+            charID = 1;
         }
         else if (sikh.isOn == true)
         {
-            charID = 3;
+            charID = 2;
         }
         else if (muslim.isOn == true)
         {
-            charID = 4;
+            charID = 3;
         }
         else if (buddhist.isOn == true)
         {
-            charID = 5;
+            charID = 4;
         }
         else if (jew.isOn == true)
         {
-            charID = 6;
+            charID = 5;
         }
         Debug.Log(charID);
 
