@@ -8,6 +8,7 @@ TagManager:
   - MaterialButtonLayer
   - Hurdle
   - FinishLine
+  - QuestionTrigger
   layers:
   - Default
   - TransparentFX

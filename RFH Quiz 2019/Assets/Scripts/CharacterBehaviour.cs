@@ -7,6 +7,10 @@ public class CharacterBehaviour : MonoBehaviour {
 	public GameObject[] characters;
 	private int chosenCharacter;
 	public Transform MovingWorld;
+
+	public GameObject QuestionUI;
+	private Animator questioncharAnimator;
+
 	public GameObject WinUI;
 	[SerializeField]
 	public Text score;
@@ -23,10 +27,11 @@ public class CharacterBehaviour : MonoBehaviour {
 	private bool questionTime = false;
 	
 	private int moveSpeed = 8;
-	private Animator animator;
+	private Animator charAnimator;
 	
 	private void Start()
 	{
+		questioncharAnimator = QuestionUI.GetComponent<Animator>();
 		WinUI.SetActive(false);
 		chosenCharacter = CharacterID.Id;
 		print(chosenCharacter);
@@ -36,7 +41,7 @@ public class CharacterBehaviour : MonoBehaviour {
 			character.SetActive(false);
 		}
 		characters[chosenCharacter].SetActive(true);
-		animator = gameObject.GetComponentInChildren<Animator>();
+		charAnimator = gameObject.GetComponentInChildren<Animator>();
 		StartCountdown(startTime);
 	}
 	
@@ -54,7 +59,7 @@ public class CharacterBehaviour : MonoBehaviour {
 		//moving controller
 		if(raceStarted == true && questionTime == false && crossFinishLine == false)
 		{
-			animator.SetTrigger("startRunning");
+			charAnimator.SetTrigger("startRunning");
 			MovingWorld.Translate(Vector2.left * moveSpeed * Time.deltaTime);
 		}
 		if(crossFinishLine == true)
@@ -68,13 +73,15 @@ public class CharacterBehaviour : MonoBehaviour {
 		countdownTimer = countdown;
 		countStarted = true;
 	}
-	
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		
 		if(col.tag == "Hurdle")
 		{
-			animator.SetTrigger("jumpUp");
+			charAnimator.SetTrigger("jumpUp");
+		}
+		if(col.tag == "QuestionTrigger")
+		{
+			questioncharAnimator.SetTrigger("slideBox");
 		}
 	}
 	private void OnTriggerExit2D(Collider2D col)
@@ -85,8 +92,9 @@ public class CharacterBehaviour : MonoBehaviour {
 		}
 		if(col.tag == "FinishLine")
 		{
-			crossFinishLine = true;
+			WinUI.GetComponent<Animator>().SetTrigger("WinIn");
 			score.text = correctAnswers.ToString();
+			crossFinishLine = true;
 		}
 	}
 	public void AnswerIs(bool isCorrect)
@@ -97,11 +105,9 @@ public class CharacterBehaviour : MonoBehaviour {
 		{
 			correctAnswers++;
 		}
-		animator.SetBool("answer", isCorrect);
-		animator.SetTrigger("fallDown");
+		charAnimator.SetBool("answer", isCorrect);
+		charAnimator.SetTrigger("fallDown");
 		questionTime = false;
-		print(questionsAnswered);
-		print(correctAnswers);
+		questioncharAnimator.SetTrigger("slideBox");
 	}
-
 }
