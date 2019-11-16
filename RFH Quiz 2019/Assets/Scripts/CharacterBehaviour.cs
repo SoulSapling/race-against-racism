@@ -23,14 +23,16 @@ public class CharacterBehaviour : MonoBehaviour {
 	private bool countStarted = false;
 	private bool crossFinishLine = false;
 	
-	private int questionsAmount= 8;
-	private int questionsAnswered = 0;
-	private int correctAnswers = 0;
+	private int correctAnswers;
 	private bool questionTime = false;
 	
 	private int moveSpeed = 8;
 	private Animator charAnimator;
 	
+	private void Awake()
+	{
+		correctAnswers = 0;
+	}
 	private void Start()
 	{
 		questioncharAnimator = QuestionUI.GetComponent<Animator>();
@@ -43,9 +45,7 @@ public class CharacterBehaviour : MonoBehaviour {
 			character.SetActive(false);
 		}
 		characters[chosenCharacter].SetActive(true);
-        Debug.Log(chosenCharacter);
 		charAnimator = gameObject.GetComponentInChildren<Animator>();
-        Debug.Log(charAnimator);
 		StartCountdown(startTime);
 	}
 	
@@ -101,14 +101,18 @@ public class CharacterBehaviour : MonoBehaviour {
 				finishTxt.text = finishTexts[0];
 			if(correctAnswers == 7)
 				finishTxt.text = finishTexts[1];
+			if(correctAnswers == 6)
+				finishTxt.text = finishTexts[2];
+			if(correctAnswers == 3 || correctAnswers == 4 || correctAnswers == 5)
+				finishTxt.text = finishTexts[3];
+			if(correctAnswers == 1 || correctAnswers == 2)
+				finishTxt.text = finishTexts[4];
 			score.text = correctAnswers.ToString();
 			crossFinishLine = true;
 		}
 	}
 	public void AnswerIs(bool isCorrect)
 	{
-		questionsAnswered++;
-		score.text = questionsAnswered.ToString();
 		if(isCorrect)
 		{
 			correctAnswers++;
