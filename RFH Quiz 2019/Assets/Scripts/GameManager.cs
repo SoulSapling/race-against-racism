@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
     private Text ansDText;
 
     [SerializeField]
-    private float timeBetweenQuestions = 6f;
+    private float timeBetweenQuestions = 1f;
 
     void Start()
     {
@@ -59,6 +59,10 @@ public class GameManager : MonoBehaviour {
         ansCText.text = currentQuestion.ansC;
         ansDText.text = currentQuestion.ansD;
         Debug.Log(unansweredQuestions.Count);
+		foreach(Button butt in buttons)
+		{
+			butt.GetComponent<Image>().color = Color.white;
+		}
 		SetButtonInteractable(true);
     }
     
@@ -80,27 +84,41 @@ public class GameManager : MonoBehaviour {
 	
     // Answer Functions
 	// References to CharacterBehaviour script to preform relevant action based on answer
-
+	public void ChangeColour(Button btn, bool isGreen)
+	{
+		if(isGreen)
+		{
+			btn.GetComponent<Image>().color = Color.green;
+		}
+		else
+		{
+			btn.GetComponent<Image>().color = Color.red;
+		}
+	}
 	public void UserSelectA()
     {
+		ChangeColour(buttons[0], currentQuestion.ansAIsTrue);
 		answerReference.AnswerIs(currentQuestion.ansAIsTrue);
 		StartCoroutine(TransitionToNexQuestion());
     }
 
     public void UserSelectB()
     {
+		ChangeColour(buttons[1], currentQuestion.ansBIsTrue);
 		answerReference.AnswerIs(currentQuestion.ansBIsTrue);
 		StartCoroutine(TransitionToNexQuestion());
     }
-
+	
     public void UserSelectC()
     {
+		ChangeColour(buttons[2], currentQuestion.ansCIsTrue);
 		answerReference.AnswerIs(currentQuestion.ansCIsTrue);
 		StartCoroutine(TransitionToNexQuestion());
 	}
 
     public void UserSelectD()
     {
+		ChangeColour(buttons[3], currentQuestion.ansDIsTrue);
 		answerReference.AnswerIs(currentQuestion.ansDIsTrue);
 		StartCoroutine(TransitionToNexQuestion());
     }
