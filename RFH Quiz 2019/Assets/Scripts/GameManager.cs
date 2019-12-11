@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour {
         ansBText.text = currentQuestion.ansB;
         ansCText.text = currentQuestion.ansC;
         ansDText.text = currentQuestion.ansD;
-        Debug.Log(unansweredQuestions.Count);
+        Debug.Log("questions left: " + unansweredQuestions.Count);
 		foreach(Button butt in buttons)
 		{
 			butt.GetComponent<Image>().color = Color.white;

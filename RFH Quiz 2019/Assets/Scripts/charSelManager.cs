@@ -38,11 +38,6 @@ public class charSelManager : MonoBehaviour {
             button.SetActive(false);
     }
 
-    public void ColorBegin()
-    {
-
-    }
-
     public void ToggleSel()
     {
         if (christian.isOn == true)
@@ -78,6 +73,8 @@ public class charSelManager : MonoBehaviour {
 	{
 		CharacterID.Id = charID;
 		print(charID);
-		SceneManager.LoadScene("DavidTest_MainLevel");
+		SceneManager.LoadScene("Main");
 	}
+	
+	
 }

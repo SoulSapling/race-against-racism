@@ -29,17 +29,21 @@ public class CharacterBehaviour : MonoBehaviour {
 	private int moveSpeed = 8;
 	private Animator charAnimator;
 	
+	public AudioClip cheerHappy;
+	public AudioClip cheerSad;
+	
 	private void Awake()
 	{
 		correctAnswers = 0;
 	}
 	private void Start()
 	{
+		AudioSource audio = GetComponent<AudioSource>();
+		
 		questioncharAnimator = QuestionUI.GetComponent<Animator>();
 		WinUI.SetActive(false);
 		chosenCharacter = CharacterID.Id;
-		print(chosenCharacter);
-		
+		print(chosenCharacter);	
 		foreach(GameObject character in characters)
 		{
 			character.SetActive(false);
@@ -116,6 +120,13 @@ public class CharacterBehaviour : MonoBehaviour {
 		if(isCorrect)
 		{
 			correctAnswers++;
+			audio.clip = cheerHappy;
+			audio.Play();
+		}
+		if(!isCorrect)
+		{
+			audio.clip = cheerSad;
+			audio.Play();
 		}
 		charAnimator.SetBool("answer", isCorrect);
 		charAnimator.SetTrigger("fallDown");
