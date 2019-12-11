@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
 
     public Question[] questions;
     private static List<Question> unansweredQuestions;
-	private bool answered = false;
+//	private bool answered = false;
 	
     public CharacterSprites[] charSets;
 

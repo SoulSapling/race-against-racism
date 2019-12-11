@@ -13,8 +13,8 @@ public class CharacterBehaviour : MonoBehaviour {
 
 	public GameObject WinUI;
 	[SerializeField]
-	public Text score;
-	public Text finishTxt;
+	public Text medal;
+	public Text finishMessage;
 	public string[] finishTexts;
 	
 	private bool raceStarted = false;
@@ -28,6 +28,8 @@ public class CharacterBehaviour : MonoBehaviour {
 	
 	private int moveSpeed = 8;
 	private Animator charAnimator;
+	
+	public AudioClip startingGun;
 	
 	public AudioClip cheerHappy;
 	public AudioClip cheerSad;
@@ -102,16 +104,33 @@ public class CharacterBehaviour : MonoBehaviour {
 		{
 			WinUI.GetComponent<Animator>().SetTrigger("WinIn");
 			if(correctAnswers == 8)
-				finishTxt.text = finishTexts[0];
+			{
+				finishMessage.text = finishTexts[0];
+			}	
 			if(correctAnswers == 7)
-				finishTxt.text = finishTexts[1];
+			{
+				finishMessage.text = finishTexts[1];
+				medal.text = "GOLD!";
+			}
 			if(correctAnswers == 6)
-				finishTxt.text = finishTexts[2];
+			{
+				finishMessage.text = finishTexts[2];
+				medal.text = "Silver!";
+			}
+			if(correctAnswers == 3)
+			{
+				medal.text = "Bronze";
+			}
 			if(correctAnswers == 3 || correctAnswers == 4 || correctAnswers == 5)
-				finishTxt.text = finishTexts[3];
+			{
+				finishMessage.text = finishTexts[3];
+				medal.text = "Better luck next time!";
+			}
 			if(correctAnswers == 1 || correctAnswers == 2)
-				finishTxt.text = finishTexts[4];
-			score.text = correctAnswers.ToString();
+			{
+				finishMessage.text = finishTexts[4];
+				medal.text = "Better luck next time!";
+			}
 			crossFinishLine = true;
 		}
 	}
@@ -120,13 +139,13 @@ public class CharacterBehaviour : MonoBehaviour {
 		if(isCorrect)
 		{
 			correctAnswers++;
-			audio.clip = cheerHappy;
-			audio.Play();
+			GetComponent<AudioSource>().clip = cheerHappy;
+			GetComponent<AudioSource>().Play();
 		}
 		if(!isCorrect)
 		{
-			audio.clip = cheerSad;
-			audio.Play();
+			GetComponent<AudioSource>().clip = cheerSad;
+			GetComponent<AudioSource>().Play();
 		}
 		charAnimator.SetBool("answer", isCorrect);
 		charAnimator.SetTrigger("fallDown");
