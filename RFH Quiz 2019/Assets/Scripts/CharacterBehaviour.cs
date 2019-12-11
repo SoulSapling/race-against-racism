@@ -10,7 +10,6 @@ public class CharacterBehaviour : MonoBehaviour {
 	
 	public GameObject QuestionUI;
 	private Animator questioncharAnimator;
-
 	public GameObject WinUI;
 	[SerializeField]
 	public Text medal;
@@ -29,10 +28,11 @@ public class CharacterBehaviour : MonoBehaviour {
 	private int moveSpeed = 8;
 	private Animator charAnimator;
 	
+	private AudioSource audioSrc;
 	public AudioClip startingGun;
-	
-	public AudioClip cheerHappy;
-	public AudioClip cheerSad;
+	public AudioClip startingCheer;
+	public AudioClip happyCheer;
+	public AudioClip disappointedCheer;
 	
 	private void Awake()
 	{
@@ -40,12 +40,11 @@ public class CharacterBehaviour : MonoBehaviour {
 	}
 	private void Start()
 	{
-		AudioSource audio = GetComponent<AudioSource>();
-		
+		audioSrc = GetComponent<AudioSource>();
+
 		questioncharAnimator = QuestionUI.GetComponent<Animator>();
 		WinUI.SetActive(false);
 		chosenCharacter = CharacterID.Id;
-		print(chosenCharacter);	
 		foreach(GameObject character in characters)
 		{
 			character.SetActive(false);
@@ -53,6 +52,8 @@ public class CharacterBehaviour : MonoBehaviour {
 		characters[chosenCharacter].SetActive(true);
 		charAnimator = gameObject.GetComponentInChildren<Animator>();
 		StartCountdown(startTime);
+		audioSrc.clip = happyCheer;
+		audioSrc.Play();
 	}
 	
 	private void Update()
@@ -106,30 +107,27 @@ public class CharacterBehaviour : MonoBehaviour {
 			if(correctAnswers == 8)
 			{
 				finishMessage.text = finishTexts[0];
+				medal.text = "GOLD!";
 			}	
 			if(correctAnswers == 7)
 			{
 				finishMessage.text = finishTexts[1];
-				medal.text = "GOLD!";
+				medal.text = "Silver!";
 			}
 			if(correctAnswers == 6)
 			{
 				finishMessage.text = finishTexts[2];
-				medal.text = "Silver!";
-			}
-			if(correctAnswers == 3)
-			{
 				medal.text = "Bronze";
 			}
 			if(correctAnswers == 3 || correctAnswers == 4 || correctAnswers == 5)
 			{
 				finishMessage.text = finishTexts[3];
-				medal.text = "Better luck next time!";
+				medal.text = "Sorry no medal this time";
 			}
 			if(correctAnswers == 1 || correctAnswers == 2)
 			{
 				finishMessage.text = finishTexts[4];
-				medal.text = "Better luck next time!";
+				medal.text = "Sorry no medal this time";
 			}
 			crossFinishLine = true;
 		}
@@ -139,13 +137,13 @@ public class CharacterBehaviour : MonoBehaviour {
 		if(isCorrect)
 		{
 			correctAnswers++;
-			GetComponent<AudioSource>().clip = cheerHappy;
-			GetComponent<AudioSource>().Play();
+			audioSrc.clip = happyCheer;
+			audioSrc.Play();
 		}
 		if(!isCorrect)
 		{
-			GetComponent<AudioSource>().clip = cheerSad;
-			GetComponent<AudioSource>().Play();
+			audioSrc.clip = disappointedCheer;
+			audioSrc.Play();
 		}
 		charAnimator.SetBool("answer", isCorrect);
 		charAnimator.SetTrigger("fallDown");
