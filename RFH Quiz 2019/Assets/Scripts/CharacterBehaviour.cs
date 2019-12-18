@@ -33,6 +33,7 @@ public class CharacterBehaviour : MonoBehaviour {
 	public AudioClip startingCheer;
 	public AudioClip happyCheer;
 	public AudioClip disappointedCheer;
+	public AudioClip finishedCheer;
 	
 	private void Awake()
 	{
@@ -104,34 +105,42 @@ public class CharacterBehaviour : MonoBehaviour {
 		if(col.tag == "FinishLine")
 		{
 			WinUI.GetComponent<Animator>().SetTrigger("WinIn");
-			if(correctAnswers == 8)
-			{
-				finishMessage.text = finishTexts[0];
-				medal.text = "GOLD!";
-			}	
-			if(correctAnswers == 7)
-			{
-				finishMessage.text = finishTexts[1];
-				medal.text = "Silver!";
-			}
-			if(correctAnswers == 6)
-			{
-				finishMessage.text = finishTexts[2];
-				medal.text = "Bronze";
-			}
-			if(correctAnswers == 3 || correctAnswers == 4 || correctAnswers == 5)
-			{
-				finishMessage.text = finishTexts[3];
-				medal.text = "Sorry no medal this time";
-			}
-			if(correctAnswers == 1 || correctAnswers == 2)
-			{
-				finishMessage.text = finishTexts[4];
-				medal.text = "Sorry no medal this time";
-			}
+			GetResult(correctAnswers);
 			crossFinishLine = true;
+			audioSrc.clip = finishedCheer;
+			audioSrc.Play();
 		}
 	}
+	
+	private void GetResult(int correctAnswers)
+	{
+		if(correctAnswers == 8)
+		{
+			finishMessage.text = finishTexts[0];
+			medal.text = "GOLD!";
+		}	
+		if(correctAnswers == 7)
+		{
+			finishMessage.text = finishTexts[1];
+			medal.text = "Silver!";
+		}
+		if(correctAnswers == 6)
+		{
+			finishMessage.text = finishTexts[2];
+			medal.text = "Bronze";
+		}
+		if(correctAnswers == 3 || correctAnswers == 4 || correctAnswers == 5)
+		{
+			finishMessage.text = finishTexts[3];
+			medal.text = "Sorry no medal this time";
+		}
+		if(correctAnswers == 1 || correctAnswers == 2)
+		{
+			finishMessage.text = finishTexts[4];
+			medal.text = "Sorry no medal this time";
+		}
+	}
+	
 	public void AnswerIs(bool isCorrect)
 	{
 		if(isCorrect)
