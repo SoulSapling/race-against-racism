@@ -5,8 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class charSelManager : MonoBehaviour {
-
-    private int charID;
+	private AudioSource audSrc;
+    
+	private int charID;
 	
     [SerializeField]
     private Toggle christian;
@@ -35,11 +36,13 @@ public class charSelManager : MonoBehaviour {
 	}
     void Start()
     {
-            button.SetActive(false);
+		audSrc = GetComponent<AudioSource>();
+        button.SetActive(false);
     }
 
     public void ToggleSel()
     {
+		audSrc.Play();
         if (christian.isOn == true)
         {
             charID = 0;
