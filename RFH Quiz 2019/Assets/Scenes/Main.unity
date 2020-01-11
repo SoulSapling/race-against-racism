@@ -928,9 +928,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6330932cdc34d7b4c9e51a132c8b5353, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1e268811d23e9f042a470786718e8544, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3807,29 +3807,9 @@ PrefabInstance:
       objectReference: {fileID: 1054325452}
     - target: {fileID: 8535558864145639393, guid: 3a3b5c37f9316e141bdf1a3942117331,
         type: 3}
-      propertyPath: disappointedCheer
-      value: 
-      objectReference: {fileID: 8300000, guid: 203d77fc0ec8cd34b8289837a4aae8d7, type: 3}
-    - target: {fileID: 8535558864145639393, guid: 3a3b5c37f9316e141bdf1a3942117331,
-        type: 3}
-      propertyPath: happyCheer
-      value: 
-      objectReference: {fileID: 8300000, guid: db61c7e50210d4544af030ec46b19eb8, type: 3}
-    - target: {fileID: 8535558864145639393, guid: 3a3b5c37f9316e141bdf1a3942117331,
-        type: 3}
-      propertyPath: startingCheer
-      value: 
-      objectReference: {fileID: 8300000, guid: db61c7e50210d4544af030ec46b19eb8, type: 3}
-    - target: {fileID: 8535558864145639393, guid: 3a3b5c37f9316e141bdf1a3942117331,
-        type: 3}
       propertyPath: startingGun
       value: 
-      objectReference: {fileID: 8300000, guid: 3e488e932b4e5ad4c87be6e8d8521be6, type: 3}
-    - target: {fileID: 8535558864145639393, guid: 3a3b5c37f9316e141bdf1a3942117331,
-        type: 3}
-      propertyPath: finishedCheer
-      value: 
-      objectReference: {fileID: 8300000, guid: db61c7e50210d4544af030ec46b19eb8, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 8535558865039046897, guid: 3a3b5c37f9316e141bdf1a3942117331,
         type: 3}
       propertyPath: m_Animations.Array.data[0]

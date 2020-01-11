@@ -698,8 +698,8 @@ MonoBehaviour:
   MovingWorld: {fileID: 0}
   QuestionUI: {fileID: 0}
   WinUI: {fileID: 0}
-  score: {fileID: 0}
-  finishTxt: {fileID: 0}
+  medal: {fileID: 0}
+  finishMessage: {fileID: 0}
   finishTexts:
   - 'You win GOLD!  Congratulations for standing against racism and bigotry! You are
     a leader. '
@@ -714,8 +714,11 @@ MonoBehaviour:
     day. Take action as your voice can make a difference to the way many people are
     treated. '
   startTime: 3
-  cheerHappy: {fileID: 8300000, guid: db61c7e50210d4544af030ec46b19eb8, type: 3}
-  cheerSad: {fileID: 8300000, guid: 203d77fc0ec8cd34b8289837a4aae8d7, type: 3}
+  startingGun: {fileID: 0}
+  startingCheer: {fileID: 8300000, guid: db61c7e50210d4544af030ec46b19eb8, type: 3}
+  happyCheer: {fileID: 8300000, guid: db61c7e50210d4544af030ec46b19eb8, type: 3}
+  disappointedCheer: {fileID: 8300000, guid: 203d77fc0ec8cd34b8289837a4aae8d7, type: 3}
+  finishedCheer: {fileID: 8300000, guid: db61c7e50210d4544af030ec46b19eb8, type: 3}
 --- !u!50 &8535558864145639392
 Rigidbody2D:
   serializedVersion: 4

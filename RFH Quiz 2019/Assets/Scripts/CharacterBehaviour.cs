@@ -29,7 +29,7 @@ public class CharacterBehaviour : MonoBehaviour {
 	private Animator charAnimator;
 	//Audio
 	private AudioSource audioSrc;
-	public AudioClip startingGun;
+//	public AudioClip startingGun;
 	public AudioClip startingCheer;
 	public AudioClip happyCheer;
 	public AudioClip disappointedCheer;
@@ -66,11 +66,11 @@ public class CharacterBehaviour : MonoBehaviour {
 		if(countdownTimer <= 0)
 		{
 			raceStarted = true;
-			if (raceStarted == true && countStarted == true)
+/*			if (raceStarted == true && countStarted == true)
 			{
 				audioSrc.clip = startingGun;
 				audioSrc.Play();
-			}
+			}*/
 			countStarted = false;
 		}
 		//moving controller
